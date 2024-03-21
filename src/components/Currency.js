@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Currency = () => {
+    const { dispatch } = useContext(AppContext);
     const [newCurrency, setNewCurrency] = useState("£ Pound");
     const [listVisible, setListVisible] = useState(false);
     const handleCurrencyChange = (currency) => {
         setNewCurrency(currency);
         setListVisible(false);
+
+        dispatch({
+            type: 'CHG_CURRENCY',
+            payload: currency.charAt(0),
+        });
     };
     
     return (
