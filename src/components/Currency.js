@@ -1,19 +1,25 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../context/AppContext';
+import React, { useState } from 'react';
 
 const Currency = () => {
-    const { currency } = useContext(AppContext);
-    const [newCurrency, setCurrency] = useState(currency);
+    const [newCurrency, setNewCurrency] = useState("£ Pound");
+    const [listVisible, setListVisible] = useState(false);
+    const handleCurrencyChange = (currency) => {
+        setNewCurrency(currency);
+        setListVisible(false);
+    };
     
     return (
-        <div className='alert alert-secondary'  style={{position:'relative'}}>
-            <button>Currency ({newCurrency})</button>
-            <ul  style={{display: none}}>
-                <li onclick="setCurrency('$ Dollar')">$ Dollar</li>
-                <li onclick="setCurrency('&#163; Pound')">&#163; Pound</li>
-                <li onclick="setCurrency('&#8364; Euro')">&#8364; Euro</li>
-                <li onclick="setCurrency('&#8377; Ruppee')">&#8377; Ruppee</li>
-            </ul>
+        <div className='alert alert-primary' style={{ position: 'relative' }}>
+            <button style={{ width: '100%', border:'none'}} onClick={() => setListVisible(!listVisible)}>Currency ({newCurrency})</button>
+            {listVisible && (
+                <ul style={{ position: 'absolute',left:0,top:'60px',fontSize:'1.5em', border:'4px solid #4F7942',borderRadius:'10px', width:'100%' ,color:'black',padding:0,textAlign:'center', backgroundColor:'#50C878',listStyle: 'none' }}>
+                    <li onClick={() => handleCurrencyChange('$ Dollar')} style={{ cursor: 'pointer' }}>$ Dollar</li>
+                    <li onClick={() => handleCurrencyChange('£ Pound')} style={{ cursor: 'pointer' }}>£ Pound</li>
+                    <li onClick={() => handleCurrencyChange('€ Euro')} style={{ cursor: 'pointer' }}>€ Euro</li>
+                    <li onClick={() => handleCurrencyChange('₹ Rupee')} style={{ cursor: 'pointer' }}>₹ Rupee</li>
+                </ul>
+            )}
+            
         </div>
         );
 };
