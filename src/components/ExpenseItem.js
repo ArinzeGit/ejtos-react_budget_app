@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { TiDelete } from 'react-icons/ti';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 import { AppContext } from '../context/AppContext';
 
 const ExpenseItem = (props) => {
@@ -41,8 +42,8 @@ const ExpenseItem = (props) => {
         <tr>
         <td>{props.name}</td>
         <td>{currency}{props.cost}</td>
-        <td><button onClick={event=> increaseAllocation(props.name)} style={{fontSize:'3em'}}>+</button></td>
-        <td><button onClick={event=> decreaseAllocation(props.name)}>-</button></td>
+        <td><FaPlus onClick={event=> increaseAllocation(props.name)} style={{color:'white', fontSize: '45px', borderRadius: '50%', backgroundColor: 'green', padding: '8px' }}></FaPlus></td>
+        <td><FaMinus onClick={event=> decreaseAllocation(props.name)} style={{color:'white', fontSize: '45px', borderRadius: '50%', backgroundColor: 'red', padding: '8px' }}></FaMinus></td>
         <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
         </tr>
     );
